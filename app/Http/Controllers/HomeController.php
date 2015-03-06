@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use MoHippo\Repositories\ProductRepository;
+
 class HomeController extends Controller {
 
 	/*
@@ -13,13 +15,15 @@ class HomeController extends Controller {
 	|
 	*/
 
+	private $repository;
 	/**
 	 * Create a new controller instance.
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(ProductRepository $repository)
 	{
+		$this->repository = $repository;
 		$this->middleware('auth');
 	}
 
@@ -30,7 +34,8 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		$data = $this->repository->paginate('book');
+		return view('home' , array('data'=>$data));
 	}
 
 }

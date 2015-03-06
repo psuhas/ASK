@@ -11,9 +11,10 @@
 |
 */
 
-$t = new MoHippo\AmazonProduct();
-$t->search();
-dd('TEST');
+//$t = new MoHippo\AmazonProduct();
+//$t->search();
+//dd('TEST');
+
 
 Route::get('/', 'WelcomeController@index');
 
